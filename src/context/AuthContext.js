@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         firstName: registerData.firstName,
         lastName: registerData.lastName,
+        isTeamLead : registerData.isTeamLead,
       };
       let response = await axios.post(`${BASE_URL}`, finalData);
       if (response.status === 201) {

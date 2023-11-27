@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState,useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
@@ -10,11 +10,14 @@ const RegisterPage = () => {
     password: "",
     firstName: "",
     lastName: "",
+    isTeamLead : false
+   
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     registerUser,
     defaultValues
   );
+  
 
   return (
     <div className="container">
@@ -62,6 +65,17 @@ const RegisterPage = () => {
             name="password"
             value={formData.password}
             onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Are You a Team Lead:{" "}
+          <input
+            type="checkbox"
+            name="isTeamLead"
+            value={formData.isTeamLead}
+            onChange={handleInputChange}
+          
+            
           />
         </label>
         <button>Register!</button>
