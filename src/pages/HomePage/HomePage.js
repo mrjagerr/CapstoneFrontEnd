@@ -8,34 +8,61 @@ const HomePage = () => {
   // The "user" value from this Hook contains user information (id, userName, email) from the decoded token
   // The "token" value is the JWT token sent from the backend that you will send back in the header of any request requiring authentication
   const [user, token] = useAuth();
-  const [cars, setCars] = useState([]);
+  const [projects, setprojects] = useState([]);
+  const [shifts, setShifts] = useState([]);
 
   useEffect(() => {
-    fetchCars();
+    fetchProjects();
+    fetchShifts();
   }, [token]);
 
-  const fetchCars = async () => {
+  const fetchProjects = async () => {
     try {
-      let response = await axios.get("https://localhost:5001/api/cars/myCars", {
+      let response = await axios.get(
+        "https://localhost:5001/api/projects/CurrentDaysProjects/2023-11-23",
+        {
+          
+        }
+      );
+      setprojects(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  const fetchShifts = async () => {
+    try {
+      let response = await axios.get("https://localhost:5001/api/shifts", {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      setCars(response.data);
+      setShifts(response.data);
     } catch (error) {
       console.log(error.response.data);
     }
   };
 
+  console.log(projects);
+  console.log(shifts);
   return (
     <div className="container">
       {console.log(user)}
       <h1>Home Page for {user.userName}!</h1>
-      {cars &&
-        cars.map((car) => (
-          <p key={car.id}>
-            {car.year} {car.model} {car.make}
-          </p>
+      {projects &&
+        projects.map((projects) => (
+          <div key={projects.id}>
+            <p>{projects.projectName}</p>
+            <p> {projects.projectDate}</p>
+            <p> {projects.totalWorkloadRequired} </p>
+            <p> {projects.workLoadAllocation}</p>
+          </div>
+        ))}
+      {shifts &&
+        shifts.map((shift) => (
+          <div key={shift.id}>
+            <p> {shift.teamMemberFirstName}</p>
+            <p> {shift.shiftDuration} Hrs</p>
+          </div>
         ))}
     </div>
   );
