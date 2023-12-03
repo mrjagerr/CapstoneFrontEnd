@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import DragAndDrop from "../DragAndDropTeamMember/DragAndDropTeamMember";
 
 const PostShift = () => {
   const [teamMemberFirstName, setTeamMemberFirstName] = useState("");
@@ -60,7 +61,13 @@ const PostShift = () => {
 
   return (
     <div>
+      <div>
+
+      </div>
+      <DragAndDrop />
+      
       <form onSubmit={handleSubmit}>
+      <label> TeamMember :</label>
         <input
           type="text"
           value={teamMemberFirstName}
@@ -81,7 +88,8 @@ const PostShift = () => {
         <label> Shift Date:</label>
         <input
           type="date"
-          onChange={(event) => setShiftDate(event.target.value)}
+          onChange={(event) => setShiftDate(event.target.value) } 
+          defaultValue="2023-12-01"
         />
         <label> Workload Value:</label>
         <input
@@ -108,7 +116,7 @@ const PostShift = () => {
             searchProject.map((project) => (
               <option key={project.id}  value={project.id} >
            
-                {project.projectName}
+                {project.projectName} {""}{project.projectDate}
              
              
               </option>

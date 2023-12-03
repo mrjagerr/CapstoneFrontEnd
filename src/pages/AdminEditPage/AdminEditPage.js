@@ -4,15 +4,18 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import TeamMemberSelect from "../../components/TeamMemberSelectCard/TeamMemberSelect";
 import PostShift from "../../components/PostShift/PostShift";
-
+import DragAndDrop from "../../components/DragAndDropTeamMember/DragAndDropTeamMember";
 import "./AdminEditPage.css";
+
+
+
 const AdminEditPage = () => {
   const [user, token] = useAuth();
 
   const [shifts, setShifts] = useState([]);
   const [currentDaysProject, setCurrentDaysproject] = useState([]);
   const [todaysShifts, setTodaysShifts] = useState([]);
-  const [dateSearch, setDateSearch] = useState(Date);
+  const [dateSearch, setDateSearch] = useState();
 
   useEffect(() => {
     fetchTeamMember();
@@ -50,7 +53,7 @@ const AdminEditPage = () => {
   const fetchCurrentWorkDay = async () => {
     try {
       let response = await axios.get(
-        "https://localhost:5001/api/projects/CurrentDaysProjects/2023-11-23",
+        `https://localhost:5001/api/projects/CurrentDaysProjects/${dateSearch}`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -64,18 +67,21 @@ const AdminEditPage = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
- fetchShifts()
+ fetchShifts();
+ fetchCurrentWorkDay();
   };
+  console.log(dateSearch)
   console.log(currentDaysProject);
   console.log(shifts);
   console.log(todaysShifts);
-
-
+  
   return (
     <div className="editpage">
+   
       <div className="editbox">
-        {" "}
-        <TeamMemberSelect />{" "}
+       
+      
+     
       </div>
 
       <div>
@@ -85,6 +91,7 @@ const AdminEditPage = () => {
 
       <form onSubmit={handleSubmit}>
         <input
+        defaultValue="2023-12-01"
           value={dateSearch}
           onChange={(e) => setDateSearch(e.target.value)}
           type="date"

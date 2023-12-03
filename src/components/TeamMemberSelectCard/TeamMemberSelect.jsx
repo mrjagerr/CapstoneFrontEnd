@@ -25,17 +25,17 @@ const TeamMemberSelect = () => {
           });
           setShifts(response.data);
         } catch (error) {
-        //   console.log(error.response.data);
+          console.log(error.response.data);
         }
       };
 
-
+console.log ( user.firstName)
 
     return (
         <form>
         <label> Team Member </label> 
 
-      <select onSelect={(e) => setTeamMember(e.target.value)}>{console.log(teamMember)}<option> Please Pick as TeamMember</option>
+      <select onSelect={(e) => setTeamMember(e.target.value)}><option> Please Pick as TeamMember</option>
         {shifts &&
           shifts.map((shift) => (
             

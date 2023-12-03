@@ -18,7 +18,7 @@ function setUserObject(user) {
   };
 }
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children,userRoles }) => {
   const BASE_URL = "https://localhost:5001/api/authentication";
   const userToken = JSON.parse(localStorage.getItem("token"));
   const decodedUser = userToken ? jwtDecode(userToken) : null;
@@ -26,6 +26,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(setUserObject(decodedUser));
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
+ 
+  
 
   const registerUser = async (registerData) => {
     try {
