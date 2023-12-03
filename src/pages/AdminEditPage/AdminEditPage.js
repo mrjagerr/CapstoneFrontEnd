@@ -2,14 +2,22 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import TeamMemberSelect from "../../components/TeamMemberSelectCard/TeamMemberSelect";
+import PostShift from "../../components/PostShift/PostShift";
 
+import "./AdminEditPage.css";
 const AdminEditPage = () => {
   const [user, token] = useAuth();
 
   const [shifts, setShifts] = useState([]);
+  const [currentDaysProject, setCurrentDaysproject] = useState([]);
+  const [todaysShifts, setTodaysShifts] = useState([]);
+  const [dateSearch, setDateSearch] = useState(Date);
 
   useEffect(() => {
     fetchTeamMember();
+    fetchCurrentWorkDay();
+    fetchShifts();
   }, [token]);
 
   const fetchTeamMember = async () => {
@@ -24,53 +32,92 @@ const AdminEditPage = () => {
       console.log(error.response.data);
     }
   };
-
+  const fetchShifts = async () => {
+    try {
+      let response = await axios.get(
+        `https://localhost:5001/api/shifts/${dateSearch}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setTodaysShifts(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  const fetchCurrentWorkDay = async () => {
+    try {
+      let response = await axios.get(
+        "https://localhost:5001/api/projects/CurrentDaysProjects/2023-11-23",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setCurrentDaysproject(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+ fetchShifts()
+  };
+  console.log(currentDaysProject);
   console.log(shifts);
+  console.log(todaysShifts);
+
 
   return (
-    <div>
-      <form>
-        <label> Team Member </label> <select >
+    <div className="editpage">
+      <div className="editbox">
+        {" "}
+        <TeamMemberSelect />{" "}
+      </div>
 
-      
-        {shifts &&
-          shifts.map((shift) => (
-            <div key={shift.id}>
-           
-                <option value="TeamMember">{shift.teamMemberFirstName}</option>
-            
-                
-             
-            </div> 
-          ))}  </select>
-        <label> Area To Zone</label>
+      <div>
+        {" "}
+        <PostShift />
+      </div>
 
-        <select>
-          <option value="fruit">Fruit</option>
-
-    
-        </select>
-
-        <label> Priority Area</label>
-        <select>
-          <option value="fruit">Fruit</option>
-
-       
-        </select>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={dateSearch}
+          onChange={(e) => setDateSearch(e.target.value)}
+          type="date"
+          id="search"
+         
+        ></input>
+        <button type="submit" className="searchButton">
+          {" "}
+          Search Shift{" "}
+        </button>
       </form>
+      {currentDaysProject &&
+        currentDaysProject.map((todaysProjects) => (
+          <div className="editbox" key={todaysProjects.id}>
+            <p>{todaysProjects.projectName}</p>
+            <p> {todaysProjects.projectDate}</p>
+            <p> {todaysProjects.workLoadAllocation}</p>
+            <p> {todaysProjects.totalWorkloadRequired}</p>
+          </div>
+        ))}
+      {todaysShifts &&
+        todaysShifts.map((todaysShifts) => (
+          <div key={todaysShifts.id}>
+            <p> {todaysShifts.teamMemberFirstName} </p>
+            <p> {todaysShifts.shiftDuration} hrs</p>
+            <p> {todaysShifts.outOfStock} OOS</p>
+            <p> {todaysShifts.priorityFill} Pf</p>
+            <p> {todaysShifts.zone} </p>
+            <p>{todaysShifts.workLoadValue}</p>
+          </div>
+        ))}
 
-      <form>
-        <label>Priority Fill</label>
-        <input></input>
-      </form>
-      <form>
-        <label>Out Of Stocks</label>
-        <input></input>
-      </form>
-      <form>
-        <label>Zone </label>
-        <input></input>
-      </form>
+      <div></div>
     </div>
   );
 };

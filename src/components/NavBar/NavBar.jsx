@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import "./NavBar.css";
+import SearchShiftByDate from "../SearchShiftByDate/SearchShiftByDate";
 
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
@@ -16,6 +17,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
+         
+        </li>
+        <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (
@@ -23,6 +27,7 @@ const Navbar = () => {
           )}
         </li>
       </ul>
+
     </div>
   );
 };
