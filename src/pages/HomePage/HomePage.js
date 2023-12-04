@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
+import DragAndDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
 
 const HomePage = () => {
   // The "user" value from this Hook contains user information (id, userName, email) from the decoded token
@@ -57,13 +58,8 @@ const HomePage = () => {
             <p> {projects.workLoadAllocation}</p>
           </div>
         ))}
-      {shifts &&
-        shifts.map((shift) => (
-          <div key={shift.id}>
-            <p> {shift.teamMemberFirstName}</p>
-            <p> {shift.shiftDuration} Hrs</p>
-          </div>
-        ))}
+     
+       <DragAndDropTmShiftCard/>
     </div>
   );
 };

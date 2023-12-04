@@ -3,79 +3,72 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import './DragAnddDropTmShiftCard.css'
-
-
+import "./DragAnddDropTmShiftCard.css";
 
 const DragAndDropTmShiftCard = () => {
   const [user, token] = useAuth();
-  const [teamMember, setTeamMember] = useState([]);
-  const [shifts, setShifts] = useState([]);
 
+ 
+ const [tasks,setTasks] = useState([])
 
   useEffect(() => {
     fetchTeamMember();
   }, [token]);
- const data= teamMember.teamMemberFirstName;
+  
   const fetchTeamMember = async () => {
     try {
-      let response = await axios.get("https://localhost:5001/api/shifts", {
+      let response = await axios.get("https://localhost:5001/api/Tasks", {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      setShifts(response.data);
-      setTeamMember(response.data)
+   
+    
+      setTasks(response.data)
     } catch (error) {
       //   console.log(error.response.data);
     }
   };
   const handleDragDrop = (results) => {
     console.log("hello there", results);
-  
-    setTeamMember(results.draggableId);
+    const { source, destination, type } = results;
+
+   
+    
   };
- 
-  
+
   return (
     <div>
-      <div>
-
-    </div>
+      <div></div>
       <DragDropContext onDragEnd={handleDragDrop}>
         <Droppable droppableId="ROOT" type="group">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              {shifts &&
-                shifts.map((shift, index) => (
+              {tasks &&
+                tasks.map((tasks, index) => (
                   <Draggable
-                    draggableId={shift.teamMemberFirstName} 
-                    key={shift.id}
+                    draggableId={tasks.goalAssignedTo}
+                    key={tasks.id}
                     index={index}
-                    
                   >
                     {(provided) => (
                       <div>
-                        <div key={shift.id} value={teamMember} >
+                        <div key={tasks.id} value={tasks}>
                           <div
                             {...provided.dragHandleProps}
                             {...provided.draggableProps}
                             ref={provided.innerRef}
                           >
                             {" "}
-                            <p>
-                              {" "}
-                           {shift.teamMemberFirstName}{" "}
-                            </p>
+                            <p> {tasks.goal} {tasks.goalAssignedTo} </p>
                           </div>
                         </div>
                       </div>
                     )}
                   </Draggable>
                 ))}{" "}
-              {console.log(teamMember)} {provided.placeholder}
-           
-            </div>  
+              {console.log(tasks)} {provided.placeholder}
+            </div>
           )}
         </Droppable>
       </DragDropContext>

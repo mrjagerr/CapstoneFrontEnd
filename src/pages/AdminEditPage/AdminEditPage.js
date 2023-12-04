@@ -8,11 +8,6 @@ import PostShift from "../../components/PostShift/PostShift";
 import DragAnddDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
 import "./AdminEditPage.css";
 
-
-
-
-
-
 const AdminEditPage = () => {
   const [user, token] = useAuth();
 
@@ -71,71 +66,84 @@ const AdminEditPage = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
- fetchShifts();
- fetchCurrentWorkDay();
+    fetchShifts();
+    fetchCurrentWorkDay();
   };
-  console.log(dateSearch)
+  console.log(dateSearch);
   console.log(currentDaysProject);
   console.log(shifts);
   console.log(todaysShifts);
-  
+
   return (
     <div className="editpage ">
-   <div>
-      <div className="editbox">
-       
-      
-     
-      </div>
-
       <div>
-        {" "}
-     <PostShift/>
-      </div>
-      
+        <div className="editbox"></div>
 
-      <form onSubmit={handleSubmit}>
-        <input
-        defaultValue="2023-12-01"
-          value={dateSearch}
-          onChange={(e) => setDateSearch(e.target.value)}
-          type="date"
-          id="search"
-         
-        ></input>
-        <button type="submit" className="searchButton">
+        <div>
           {" "}
-          Search Shift{" "}
-        </button>
-        
-      </form>
+          <PostShift />
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            defaultValue="2023-12-01"
+            value={dateSearch}
+            onChange={(e) => setDateSearch(e.target.value)}
+            type="date"
+            id="search"
+          ></input>
+          <button type="submit" className="searchButton">
+            {" "}
+            Search Shift{" "}
+          </button>
+        </form>
       </div>
-      <div className="displayPage"><h1>Todays Project</h1>
-      {currentDaysProject &&
-        currentDaysProject.map((todaysProjects) => (<div className="editCard">
-          <div className="editbox" key={todaysProjects.id}>
-            <p>{todaysProjects.projectName}</p>
-            <p> {todaysProjects.projectDate}</p>
-            <p> {todaysProjects.workLoadAllocation}</p>
-            <p> {todaysProjects.totalWorkloadRequired}</p>
-          </div></div>
-        ))}
+      <div className="displayPage">
+        <h1>Todays Project</h1>
+        {currentDaysProject &&
+          currentDaysProject.map((todaysProjects) => (
+            <div className="editCard">
+              <div className="editbox" key={todaysProjects.id}>
+                <p>{todaysProjects.projectName}</p>
+                <p> {todaysProjects.projectDate}</p>
+                <p> {todaysProjects.workLoadAllocation}</p>
+                <p> {todaysProjects.totalWorkloadRequired}</p>
+              </div>
+            </div>
+          ))}
         <h2>Todays SHifts</h2>
-      {todaysShifts &&
-        todaysShifts.map((todaysShifts) => (<div className="editCard">
-          <div key={todaysShifts.id}>
-            <p> <label> Tm : </label> {todaysShifts.teamMemberFirstName} </p>
-            <p> <label> Shift: </label> {todaysShifts.shiftDuration} hrs</p>
-            <p> <label> Oos : </label> {todaysShifts.outOfStock} OOS</p>
-            <p> <label> PF: </label> {todaysShifts.priorityFill} Pf</p>
-            <p> <label> Zone: </label> {todaysShifts.zone} </p>
-            <p> <label> WorkLoad Value : </label> {todaysShifts.workLoadValue}</p>
-          </div></div>
-        ))}<div>
-      
-      </div>
-      
- 
+        {todaysShifts &&
+          todaysShifts.map((todaysShifts) => (
+            <div className="editCard">
+              <div key={todaysShifts.id}>
+                <p>
+                  {" "}
+                  <label> Tm : </label> {todaysShifts.teamMemberFirstName}{" "}
+                </p>
+                <p>
+                  {" "}
+                  <label> Shift: </label> {todaysShifts.shiftDuration} hrs
+                </p>
+                <p>
+                  {" "}
+                  <label> Oos : </label> {todaysShifts.outOfStock} OOS
+                </p>
+                <p>
+                  {" "}
+                  <label> PF: </label> {todaysShifts.priorityFill} Pf
+                </p>
+                <p>
+                  {" "}
+                  <label> Zone: </label> {todaysShifts.zone}{" "}
+                </p>
+                <p>
+                  {" "}
+                  <label> WorkLoad Value : </label> {todaysShifts.workLoadValue}
+                </p>
+              </div>
+            </div>
+          ))}
+        <div></div>
       </div>
     </div>
   );

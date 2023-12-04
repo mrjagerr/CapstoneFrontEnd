@@ -28,11 +28,7 @@ const TeamMemberSelect = () => {
           console.log(error.response.data);
         }
       };
-      const handleDragDrop = (results) => {
-        console.log("hello there", results);
-      
-        setTeamMember(results.draggableId);
-      };
+
 console.log ( user.firstName)
 
     return (

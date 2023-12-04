@@ -3,9 +3,6 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import DragAnddDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
 
-
-
-
 const PostShift = (props) => {
   const [teamMemberFirstName, setTeamMemberFirstName] = useState("");
   const [shiftDuration, setShiftDuration] = useState(Number);
@@ -18,16 +15,10 @@ const PostShift = (props) => {
   const [projectId, setProjectId] = useState(Number);
   const [user, token] = useAuth();
   const [searchProject, setSearchProject] = useState([]);
-  
 
   useEffect(() => {
     fetchProjects();
   }, [token]);
-
-
-
-
-
 
   async function addShift() {
     axios.post(
@@ -47,11 +38,9 @@ const PostShift = (props) => {
         headers: {
           Authorization: "Bearer " + token,
         },
-      },
-     
-     
-     
+      }
     );
+    
   }
   const fetchProjects = async () => {
     try {
@@ -61,12 +50,12 @@ const PostShift = (props) => {
       console.log(error.response.data);
     }
   };
- 
+
   function handleSubmit(event) {
     event.preventDefault();
-    if(event.status===403){
-      alert('succesfull');
-   }
+    if (event.status === 403) {
+      alert("succesfull");
+    }
     let newshift = {};
     {
       console.log(newshift);
@@ -76,20 +65,14 @@ const PostShift = (props) => {
 
   return (
     <div>
-      <div>
-   
-      </div>
-     
-      
+      <div></div>
+
       <form onSubmit={handleSubmit}>
-       
-      <label> TeamMember :</label>
+        <label> TeamMember :</label>
         <input
-        
-          Droppable ="true"
+          Droppable="true"
           type="text"
           value={teamMemberFirstName}
-        
           onChange={(event) => setTeamMemberFirstName(event.target.value)}
           id="teamMemberFirstName"
         />
@@ -108,7 +91,7 @@ const PostShift = (props) => {
         <label> Shift Date:</label>
         <input
           type="date"
-          onChange={(event) => setShiftDate(event.target.value) } 
+          onChange={(event) => setShiftDate(event.target.value)}
           defaultValue="2023-12-01"
         />
         <label> Workload Value:</label>
@@ -131,18 +114,16 @@ const PostShift = (props) => {
         <label> Project :</label>
 
         <select onChange={(e) => setProjectId(e.target.value)}>
-          <option >Please choose a project  </option>
+          <option>Please choose a project </option>
           {searchProject &&
             searchProject.map((project) => (
-              <option key={project.id}  value={project.id} >
-           
-                {project.projectName} {""}{project.projectDate}
-             
-             
+              <option key={project.id} value={project.id}>
+                {project.projectName} {""}
+                {project.projectDate}
               </option>
             ))}{" "}
         </select>
-                
+
         <button type="submit" className="buttonDetails">
           Post Shift
         </button>
