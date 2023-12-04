@@ -25,7 +25,7 @@ const SearchShiftByDate = () => {
             onChange={(e) => setSearch(e.target.value)}
             type="date"
             id="search"
-            className="searchBar"
+          
           ></input>
           <button type="submit" className="searchButton"> Search Shift </button>
         </form>

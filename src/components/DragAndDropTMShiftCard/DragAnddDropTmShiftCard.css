@@ -1,0 +1,16 @@
+.editCard{
+    border-color: black;
+    border: 3px solid;
+    border-radius: 3rem;
+    display: flex;
+  
+    align-items: center;
+    width: auto;
+    
+   
+    box-shadow: 3rem;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    background-color:lightblue
+    
+}

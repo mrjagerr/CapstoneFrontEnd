@@ -15,9 +15,15 @@ const Navbar = () => {
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <b>ProjectManagment App</b>
           </Link>
+        
         </li>
         <li>
-         
+        <Link to="/AdminEditPage" style={{ textDecoration: "none", color: "white" }}>
+            <b> Shifts </b>
+          </Link>
+          <Link to="/AssignmentViewPage" style={{ textDecoration: "none", color: "white" }}>
+            <b>Profile</b>
+          </Link>
         </li>
         <li>
           {user ? (

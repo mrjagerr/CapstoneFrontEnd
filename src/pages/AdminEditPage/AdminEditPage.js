@@ -2,10 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
-import TeamMemberSelect from "../../components/TeamMemberSelectCard/TeamMemberSelect";
+
 import PostShift from "../../components/PostShift/PostShift";
-import DragAndDrop from "../../components/DragAndDropTeamMember/DragAndDropTeamMember";
+
+import DragAnddDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
 import "./AdminEditPage.css";
+
+
+
 
 
 
@@ -76,8 +80,8 @@ const AdminEditPage = () => {
   console.log(todaysShifts);
   
   return (
-    <div className="editpage">
-   
+    <div className="editpage ">
+   <div>
       <div className="editbox">
        
       
@@ -86,8 +90,9 @@ const AdminEditPage = () => {
 
       <div>
         {" "}
-        <PostShift />
+     <PostShift/>
       </div>
+      
 
       <form onSubmit={handleSubmit}>
         <input
@@ -102,29 +107,36 @@ const AdminEditPage = () => {
           {" "}
           Search Shift{" "}
         </button>
+        
       </form>
+      </div>
+      <div className="displayPage"><h1>Todays Project</h1>
       {currentDaysProject &&
-        currentDaysProject.map((todaysProjects) => (
+        currentDaysProject.map((todaysProjects) => (<div className="editCard">
           <div className="editbox" key={todaysProjects.id}>
             <p>{todaysProjects.projectName}</p>
             <p> {todaysProjects.projectDate}</p>
             <p> {todaysProjects.workLoadAllocation}</p>
             <p> {todaysProjects.totalWorkloadRequired}</p>
-          </div>
+          </div></div>
         ))}
+        <h2>Todays SHifts</h2>
       {todaysShifts &&
-        todaysShifts.map((todaysShifts) => (
+        todaysShifts.map((todaysShifts) => (<div className="editCard">
           <div key={todaysShifts.id}>
-            <p> {todaysShifts.teamMemberFirstName} </p>
-            <p> {todaysShifts.shiftDuration} hrs</p>
-            <p> {todaysShifts.outOfStock} OOS</p>
-            <p> {todaysShifts.priorityFill} Pf</p>
-            <p> {todaysShifts.zone} </p>
-            <p>{todaysShifts.workLoadValue}</p>
-          </div>
-        ))}
-
-      <div></div>
+            <p> <label> Tm : </label> {todaysShifts.teamMemberFirstName} </p>
+            <p> <label> Shift: </label> {todaysShifts.shiftDuration} hrs</p>
+            <p> <label> Oos : </label> {todaysShifts.outOfStock} OOS</p>
+            <p> <label> PF: </label> {todaysShifts.priorityFill} Pf</p>
+            <p> <label> Zone: </label> {todaysShifts.zone} </p>
+            <p> <label> WorkLoad Value : </label> {todaysShifts.workLoadValue}</p>
+          </div></div>
+        ))}<div>
+      
+      </div>
+      
+ 
+      </div>
     </div>
   );
 };

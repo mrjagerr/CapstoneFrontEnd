@@ -1,8 +1,32 @@
 .editpage{
     border-color: black;
     border: 3px solid;
+  
 }
 .editbox{
     border-color: black;
     border: 3px solid;
+}
+.editCard{
+    border-color: black;
+    border: 3px solid;
+    border-radius: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20rem;
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 3rem;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    background-color:lightblue;
+    height: fit-content;
+    
+}
+.displayPage{
+    border-color: black;
+    border: 3px solid;
+    flex-direction: row;
+    display: flex;
 }

@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import AdminEditPage from "./pages/AdminEditPage/AdminEditPage";
-import TmAssignmentViewPage from "./pages/TmAssignmentViewPage/TmAssignmentViewPage";
+import AssignmentViewPage from "./pages/AssignmentViewPage/AssignmentViewPage";
 import TmPerformanceViewPage from "./pages/TmPerformancePage/TmPerformanceViewPage";
 
 // Component Imports
@@ -39,10 +39,10 @@ function App() {
           }
         />
         <Route
-          path="/TmAssignmentViewPage"
+          path="/AssignmentViewPage"
           element={
             <PrivateRoute>
-              <TmAssignmentViewPage />
+              <AssignmentViewPage />
             </PrivateRoute>
           }
         />

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import DragAndDrop from "../DragAndDropTeamMember/DragAndDropTeamMember";
+import DragAnddDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
 
-const PostShift = () => {
+
+
+
+const PostShift = (props) => {
   const [teamMemberFirstName, setTeamMemberFirstName] = useState("");
   const [shiftDuration, setShiftDuration] = useState(Number);
   const [departmentName, setDepartmentName] = useState("");
@@ -15,6 +18,7 @@ const PostShift = () => {
   const [projectId, setProjectId] = useState(Number);
   const [user, token] = useAuth();
   const [searchProject, setSearchProject] = useState([]);
+
 
   useEffect(() => {
     fetchProjects();
@@ -62,15 +66,19 @@ const PostShift = () => {
   return (
     <div>
       <div>
-
+      {console.log(props)}
       </div>
-      <DragAndDrop />
+     
       
       <form onSubmit={handleSubmit}>
+       
       <label> TeamMember :</label>
         <input
+        
+          Droppable ="true"
           type="text"
           value={teamMemberFirstName}
+        
           onChange={(event) => setTeamMemberFirstName(event.target.value)}
           id="teamMemberFirstName"
         />
