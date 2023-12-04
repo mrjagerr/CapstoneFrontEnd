@@ -15,6 +15,7 @@ function setUserObject(user) {
     userName: user.userName,
     id: user.id,
     email: user.email,
+    firstName : user.firstName,
   };
 }
 
@@ -51,7 +52,7 @@ export const AuthProvider = ({ children,userRoles }) => {
       console.log(error);
     }
   };
-
+console.log(user)
   const loginUser = async (loginData) => {
     try {
       let response = await axios.post(`${BASE_URL}/login`, loginData);

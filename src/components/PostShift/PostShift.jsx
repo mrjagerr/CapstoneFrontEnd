@@ -18,11 +18,17 @@ const PostShift = (props) => {
   const [projectId, setProjectId] = useState(Number);
   const [user, token] = useAuth();
   const [searchProject, setSearchProject] = useState([]);
-
+  
 
   useEffect(() => {
     fetchProjects();
   }, [token]);
+
+
+
+
+
+
   async function addShift() {
     axios.post(
       "https://localhost:5001/api/shifts",
@@ -41,7 +47,10 @@ const PostShift = (props) => {
         headers: {
           Authorization: "Bearer " + token,
         },
-      }
+      },
+     
+     
+     
     );
   }
   const fetchProjects = async () => {
@@ -55,7 +64,9 @@ const PostShift = (props) => {
  
   function handleSubmit(event) {
     event.preventDefault();
-
+    if(event.status===403){
+      alert('succesfull');
+   }
     let newshift = {};
     {
       console.log(newshift);
@@ -66,7 +77,7 @@ const PostShift = (props) => {
   return (
     <div>
       <div>
-      {console.log(props)}
+   
       </div>
      
       
@@ -87,6 +98,7 @@ const PostShift = (props) => {
           type="number"
           value={shiftDuration}
           onChange={(event) => setShiftDuration(event.target.value)}
+          id="ShiftDuration"
         />
         <label> Department Name :</label>
         <input
