@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import DragAnddDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
+import DragAnddDropTmShiftCard from "../TeamMemberTaskList/TeamMemberTaskList";
 
 const PostShift = (props) => {
   const [teamMemberFirstName, setTeamMemberFirstName] = useState("");

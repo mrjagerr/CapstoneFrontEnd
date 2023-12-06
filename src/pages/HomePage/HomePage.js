@@ -1,9 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-
 import axios from "axios";
-import DragAndDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
+import TeamMemberTaskList from "../../components/TeamMemberTaskList/TeamMemberTaskList";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import "./Homepage.css";
+import { easeQuadInOut } from "d3-ease";
+import ProgressProvider from "../../hooks/ProgressProvider";
 
 const HomePage = () => {
   // The "user" value from this Hook contains user information (id, userName, email) from the decoded token
@@ -11,21 +15,30 @@ const HomePage = () => {
   const [user, token] = useAuth();
   const [projects, setprojects] = useState([]);
   const [shifts, setShifts] = useState([]);
-
+  const [dateSearch, setDateSearch] = useState();
+  const [updateProjectName, setUpdateProjectName] = useState("");
+  const [ workLoadUpdate, setWorkLoadUpdate] = useState();
+  const [updateDate, setUpdateDate] = useState("");
+ const [projectId, setProjectId] = useState();
+ 
   useEffect(() => {
     fetchProjects();
     fetchShifts();
+    updateProject();
+    
   }, [token]);
 
+ 
+ 
   const fetchProjects = async () => {
     try {
       let response = await axios.get(
-        "https://localhost:5001/api/projects/CurrentDaysProjects/2023-11-23",
-        {
-          
-        }
+        `https://localhost:5001/api/projects/CurrentDaysProjects/${dateSearch}`,
+        {}
       );
       setprojects(response.data);
+      
+      
     } catch (error) {
       console.log(error.response.data);
     }
@@ -38,28 +51,123 @@ const HomePage = () => {
         },
       });
       setShifts(response.data);
+    
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }; const updateProject = async () => {
+    try {
+      await axios.put(
+        `https://localhost:5001/api/projects/${projectId}`,
+        {
+          projectName: updateProjectName,
+          projectDate: updateDate,
+          workloadCompleted: workLoadUpdate,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+    
+      
+      
+      
     } catch (error) {
       console.log(error.response.data);
     }
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetchShifts();
+    fetchProjects();
+  };
+  const handleUpdate = (event) =>{
+    event.preventDefault();
+    updateProject()
+fetchProjects();
+  };
+ 
 
-  console.log(projects);
-  console.log(shifts);
+  
   return (
     <div className="container">
+      <form onSubmit={handleSubmit}>
+        <input
+          defaultValue="2023-12-01"
+          value={dateSearch}
+          onChange={(e) => setDateSearch(e.target.value) && setUpdateDate(e.target.value) && setUpdateProjectName(projects.projectName)}
+        
+          type="date"
+          id="search"
+        ></input>
+        <button type="submit" className="searchButton">
+          {" "}
+          Search Shift{" "}
+        </button>
+      </form>
       {console.log(user)}
       <h1>Home Page for {user.userName}!</h1>
       {projects &&
         projects.map((projects) => (
           <div key={projects.id}>
-            <p>{projects.projectName}</p>
-            <p> {projects.projectDate}</p>
-            <p> {projects.totalWorkloadRequired} </p>
-            <p> {projects.workLoadAllocation}</p>
+            <p> Todays Project: {projects.projectName}</p>
+            <p> Date: {projects.projectDate}</p>
+            <p> Total Workload : {projects.totalWorkloadRequired} </p>
+            <p> Hours Allocated :{projects.workLoadAllocation}</p>
+            <p> WorkLoad Completed :{projects.workLoadCompleted}</p>
+            <p></p>
+            <ProgressProvider
+              valueStart={0}
+              valueEnd={projects.percentCompleted}
+            >
+              {(value) => (
+                <CircularProgressbar value={value} text={`${value} %`} />
+              )}
+            </ProgressProvider>
           </div>
         ))}
-     
-       <DragAndDropTmShiftCard/>
+      <div>
+        <form onSubmit={handleUpdate}>
+          {projects &&
+            projects.map((projects) => (
+              <div key={projects.id}>
+                <label> Project Being Edited</label>
+               <select onChange={(e) => setProjectId(e.target.value)}>
+
+                <option> Please Choose a Project To update</option>
+                <option key ={projects.id} value={projects.id} >
+                {projects.projectName} {""}
+                {projects.projectDate}
+                   </option>
+               </select>
+               <input type="text"
+                value={updateProjectName}
+                onChange={(e) => setUpdateProjectName(e.target.value)}>
+               </input>
+               <input 
+               type="text"
+               
+               value={updateDate}
+               onChange={(e) => setUpdateDate(e.target.value)}>
+              
+               </input>
+                <input
+                type="number"
+                value={workLoadUpdate}
+                onChange={(e) => setWorkLoadUpdate(e.target.value)}>
+                </input>
+                <button type="submit" className="searchButton">
+                  {" "}
+                  Update WorkLoad{" "}
+                </button>
+              </div>
+            ))}
+        </form>
+      </div>
+
+      <TeamMemberTaskList />
     </div>
   );
 };

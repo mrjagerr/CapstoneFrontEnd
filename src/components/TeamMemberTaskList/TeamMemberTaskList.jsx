@@ -3,19 +3,22 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import "./DragAnddDropTmShiftCard.css";
+import "./TeamMemberTaskList.css";
+import PostToList from "../PostToList/PostToList";
 
-const DragAndDropTmShiftCard = () => {
+
+
+const TeamMemberTaskList = () => {
   const [user, token] = useAuth();
-
+const [completedTask,setCompletedTasks] = useState();
  
- const [tasks,setTasks] = useState([])
+ const [tasks,setTasks] = useState()
 
   useEffect(() => {
-    fetchTeamMember();
+   
   }, [token]);
-  
-  const fetchTeamMember = async () => {
+ 
+  const fetchTasks = async () => {
     try {
       let response = await axios.get("https://localhost:5001/api/Tasks", {
         headers: {
@@ -25,26 +28,46 @@ const DragAndDropTmShiftCard = () => {
    
     
       setTasks(response.data)
+      setCompletedTasks(tasks )
     } catch (error) {
       //   console.log(error.response.data);
     }
   };
   const handleDragDrop = (results) => {
     console.log("hello there", results);
-    const { source, destination, type } = results;
+ 
+  
+  const {source,destination,type} =results;
+  if (!destination) return;
+  if (source.droppableId === destination.droppableId && source.index === destination.index)
+  return;
+if(type === 'group'){
+  const reorderedTasks = [...tasks];
+ console.log(reorderedTasks)
+ const sourceIndex = source.index;
+ const destinationIndex = destination.index
+ const [removeTasks] = reorderedTasks.splice(sourceIndex,1);
+ reorderedTasks.splice(destinationIndex,0, removeTasks)
+ return setTasks(reorderedTasks)
+ 
 
-   
+}
     
   };
 
   return (
-    <div>
-      <div></div>
+    <div className="List">
+      <div className="progress"></div>
+      <PostToList/>
+      <button onClick={fetchTasks}>  Get Current Tasks </button>
+      <div className="postBox">
+      <div className="Container">
+      <div className="cardTitle" >
       <DragDropContext onDragEnd={handleDragDrop}>
-        <Droppable droppableId="ROOT" type="group">
+        <Droppable droppableId="Tasks" type="group">
           {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {tasks &&
+            <div  {...provided.droppableProps} ref={provided.innerRef}>
+              {tasks&&
                 tasks.map((tasks, index) => (
                   <Draggable
                     draggableId={tasks.goalAssignedTo}
@@ -52,9 +75,9 @@ const DragAndDropTmShiftCard = () => {
                     index={index}
                   >
                     {(provided) => (
-                      <div>
+                      <div >
                         <div key={tasks.id} value={tasks}>
-                          <div
+                          <div className="editCard"
                             {...provided.dragHandleProps}
                             {...provided.draggableProps}
                             ref={provided.innerRef}
@@ -72,7 +95,15 @@ const DragAndDropTmShiftCard = () => {
           )}
         </Droppable>
       </DragDropContext>
+      </div>
+      </div>
+     <div className="Container">
+      
+      
+      </div>
+      </div>
+     
     </div>
   );
 };
-export default DragAndDropTmShiftCard;
+export default TeamMemberTaskList;

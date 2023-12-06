@@ -1,0 +1,61 @@
+.editCard{
+    border-color: black;
+    border: 3px solid;
+    border-radius: 3rem;
+
+  
+
+   
+    
+   
+    box-shadow: 3rem;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    background-color:lightblue
+    
+}
+.List{
+    border-color: black;
+    border: 3px solid;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+justify-content: center;
+justify-self: center;
+  
+}
+.totalList{
+    border-color: black;
+    border: 3px solid;
+    border-radius: 3px;
+    background-color: yellow;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.Container{
+    border-color: black;
+    border: 3px solid;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    align-content: center;
+  justify-content: center;
+       
+        margin: 2rem;
+}
+.postBox{
+    border-color: black;
+    
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+  padding: 2rem;
+}
+.cardTitle{
+ 
+    align-self: center;
+}

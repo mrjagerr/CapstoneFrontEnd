@@ -5,7 +5,7 @@ import axios from "axios";
 
 import PostShift from "../../components/PostShift/PostShift";
 
-import DragAnddDropTmShiftCard from "../../components/DragAndDropTMShiftCard/DragAnddDropTmShiftCard";
+import DragAnddDropTmShiftCard from "../../components/TeamMemberTaskList/TeamMemberTaskList";
 import "./AdminEditPage.css";
 
 const AdminEditPage = () => {
@@ -15,7 +15,7 @@ const AdminEditPage = () => {
   const [currentDaysProject, setCurrentDaysproject] = useState([]);
   const [todaysShifts, setTodaysShifts] = useState([]);
   const [dateSearch, setDateSearch] = useState();
-
+  const [valueEnd, setValueEnd] = useState(currentDaysProject.workloadCompleted);
   useEffect(() => {
     fetchTeamMember();
     fetchCurrentWorkDay();
