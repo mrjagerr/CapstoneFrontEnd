@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-
-
-
-
-
-const PostToList = ({onClick}) => {
+const PostToList = ({ onClick }) => {
   const [goal, setGoal] = useState("");
   const [goalAssignedTo, setGoalAssignedTo] = useState();
   const [user, token] = useAuth();
@@ -29,7 +24,7 @@ const PostToList = ({onClick}) => {
       }
     );
   }
-  
+
   function handleSubmit(event) {
     event.preventDefault();
     if (event.status === 403) {
@@ -68,5 +63,5 @@ const PostToList = ({onClick}) => {
     </div>
   );
 };
- 
+
 export default PostToList;

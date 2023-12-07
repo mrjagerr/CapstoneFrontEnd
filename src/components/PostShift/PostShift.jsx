@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import DragAnddDropTmShiftCard from "../TeamMemberTaskList/TeamMemberTaskList";
 
 const PostShift = (props) => {
   const [teamMemberFirstName, setTeamMemberFirstName] = useState("");
   const [shiftDuration, setShiftDuration] = useState(Number);
   const [departmentName, setDepartmentName] = useState("");
-  const [shiftDate, setShiftDate] = useState(Date);
+  const [shiftDate, setShiftDate] = useState("");
   const [workloadValue, setWorkLoadValue] = useState(Number);
   const [priorityFill, setPriorityFill] = useState(Number);
   const [outOfStocks, setOutOfStocks] = useState(Number);
@@ -40,7 +39,6 @@ const PostShift = (props) => {
         },
       }
     );
-    
   }
   const fetchProjects = async () => {
     try {

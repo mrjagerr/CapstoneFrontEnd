@@ -15,11 +15,11 @@ function setUserObject(user) {
     userName: user.userName,
     id: user.id,
     email: user.email,
-    firstName : user.firstName,
+    firstName: user.firstName,
   };
 }
 
-export const AuthProvider = ({ children,userRoles }) => {
+export const AuthProvider = ({ children, userRoles }) => {
   const BASE_URL = "https://localhost:5001/api/authentication";
   const userToken = JSON.parse(localStorage.getItem("token"));
   const decodedUser = userToken ? jwtDecode(userToken) : null;
@@ -27,8 +27,6 @@ export const AuthProvider = ({ children,userRoles }) => {
   const [user, setUser] = useState(setUserObject(decodedUser));
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
- 
-  
 
   const registerUser = async (registerData) => {
     try {
@@ -38,7 +36,7 @@ export const AuthProvider = ({ children,userRoles }) => {
         email: registerData.email,
         firstName: registerData.firstName,
         lastName: registerData.lastName,
-        isTeamLead : registerData.isTeamLead,
+        isTeamLead: registerData.isTeamLead,
       };
       let response = await axios.post(`${BASE_URL}`, finalData);
       if (response.status === 201) {
@@ -52,7 +50,7 @@ export const AuthProvider = ({ children,userRoles }) => {
       console.log(error);
     }
   };
-console.log(user)
+  console.log(user);
   const loginUser = async (loginData) => {
     try {
       let response = await axios.post(`${BASE_URL}/login`, loginData);

@@ -15,16 +15,8 @@ const Navbar = () => {
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <b>ProjectManagment App</b>
           </Link>
-        
         </li>
-        <li>
-        <Link to="/AdminEditPage" style={{ textDecoration: "none", color: "white" }}>
-            <b> Shifts </b>
-          </Link>
-          <Link to="/AssignmentViewPage" style={{ textDecoration: "none", color: "white" }}>
-            <b>Profile</b>
-          </Link>
-        </li>
+
         <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
@@ -33,7 +25,31 @@ const Navbar = () => {
           )}
         </li>
       </ul>
+      <ul>
+        <li>
+          <Link
+            className="navLinks"
+            to="/AdminEditPage"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <b> Manage </b>
+          </Link>
 
+          <Link
+            to="/AssignmentViewPage"
+            className="navLinks"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <b>Profile</b>
+          </Link>
+          <Link
+            to="/TmPerformanceViewPage"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <b>Performance</b>
+          </Link>
+        </li>
+      </ul>
     </div>
   );
 };
