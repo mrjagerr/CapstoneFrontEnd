@@ -11,11 +11,11 @@ import PostToList from "../PostToList/PostToList";
 const TeamMemberTaskList = () => {
   const [user, token] = useAuth();
 const [completedTask,setCompletedTasks] = useState();
+ const [tasks,setTasks] = useState();
  
- const [tasks,setTasks] = useState()
 
   useEffect(() => {
-   
+   fetchTasks();
   }, [token]);
  
   const fetchTasks = async () => {
@@ -28,15 +28,28 @@ const [completedTask,setCompletedTasks] = useState();
    
     
       setTasks(response.data)
-      setCompletedTasks(tasks )
+      setCompletedTasks(tasks)
+     
     } catch (error) {
       //   console.log(error.response.data);
     }
   };
+  async function completeTask(id){
+try {
+      await axios.delete(`https://localhost:5001/api/Tasks/${id}`)
+       
+   fetchTasks();
+    
+    
+    } catch (error) {
+      //   console.log(error.response.data);
+    }
+  }
+  
   const handleDragDrop = (results) => {
     console.log("hello there", results);
  
-  
+    
   const {source,destination,type} =results;
   if (!destination) return;
   if (source.droppableId === destination.droppableId && source.index === destination.index)
@@ -58,8 +71,8 @@ if(type === 'group'){
   return (
     <div className="List">
       <div className="progress"></div>
-      <PostToList/>
-      <button onClick={fetchTasks}>  Get Current Tasks </button>
+      <PostToList onSubmit ={ fetchTasks}/>
+      <button onClick={fetchTasks} >  Get Current Tasks </button>
       <div className="postBox">
       <div className="Container">
       <div className="cardTitle" >
@@ -83,14 +96,16 @@ if(type === 'group'){
                             ref={provided.innerRef}
                           >
                             {" "}
-                            <p> {tasks.goal} {tasks.goalAssignedTo} </p>
+                            <p> {tasks.goal} {tasks.goalAssignedTo} {tasks.id} </p>
+                            <button onClick ={()=>completeTask(tasks.id)}> Complete </button>
+                            
                           </div>
                         </div>
                       </div>
                     )}
                   </Draggable>
                 ))}{" "}
-              {console.log(tasks)} {provided.placeholder}
+               {provided.placeholder}
             </div>
           )}
         </Droppable>
