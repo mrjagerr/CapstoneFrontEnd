@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import "./PostShift.css";
 
 const PostShift = (props) => {
   const [teamMemberFirstName, setTeamMemberFirstName] = useState("");
@@ -62,67 +63,82 @@ const PostShift = (props) => {
   }
 
   return (
-    <div>
+    <div className="postShift">
       <div></div>
 
       <form onSubmit={handleSubmit}>
-        <label> TeamMember :</label>
-        <input
-          Droppable="true"
-          type="text"
-          value={teamMemberFirstName}
-          onChange={(event) => setTeamMemberFirstName(event.target.value)}
-          id="teamMemberFirstName"
-        />
-        <label> Shift Length :</label>
-        <input
-          type="number"
-          value={shiftDuration}
-          onChange={(event) => setShiftDuration(event.target.value)}
-          id="ShiftDuration"
-        />
+        <li>
+          <label> TeamMember :</label>
+          <input
+            Droppable="true"
+            type="text"
+            value={teamMemberFirstName}
+            onChange={(event) => setTeamMemberFirstName(event.target.value)}
+            id="teamMemberFirstName"
+          />
+        </li>
+        <li>
+          <label> Shift Length :</label>
+          <input
+            type="number"
+            value={shiftDuration}
+            onChange={(event) => setShiftDuration(event.target.value)}
+            id="ShiftDuration"
+          />
+        </li>
         <label> Department Name :</label>
         <input
           type="text"
           onChange={(event) => setDepartmentName(event.target.value)}
         />
-        <label> Shift Date:</label>
-        <input
-          type="date"
-          onChange={(event) => setShiftDate(event.target.value)}
-          defaultValue="2023-12-01"
-        />
-        <label> Workload Value:</label>
-        <input
-          type="number"
-          onChange={(event) => setWorkLoadValue(event.target.value)}
-        />
-        <label> Priority Fill:</label>
-        <input
-          type="number"
-          onChange={(event) => setPriorityFill(event.target.value)}
-        />
+        <li>
+          <label> Shift Date:</label>
+          <input
+            type="date"
+            onChange={(event) => setShiftDate(event.target.value)}
+            defaultValue="2023-12-01"
+          />
+        </li>
+        <li>
+          <label> Workload Value:</label>
+          <input
+            type="number"
+            onChange={(event) => setWorkLoadValue(event.target.value)}
+          />
+        </li>{" "}
+        <li>
+          <label> Priority Fill:</label>
+          <input
+            type="number"
+            onChange={(event) => setPriorityFill(event.target.value)}
+          />
+        </li>
         <label> Out Of Stocks:</label>
         <input
           type="number"
           onChange={(event) => setOutOfStocks(event.target.value)}
-        />
-        <label> Zone:</label>
-        <input type="text" onChange={(event) => setZone(event.target.value)} />
-        <label> Project :</label>
-
-        <select onChange={(e) => setProjectId(e.target.value)}>
-          <option>Please choose a project </option>
-          {searchProject &&
-            searchProject.map((project) => (
-              <option key={project.id} value={project.id}>
-                {project.projectName} {""}
-                {project.projectDate}
-              </option>
-            ))}{" "}
-        </select>
-
-        <button type="submit" className="buttonDetails">
+        />{" "}
+        <li>
+          <label> Zone:</label>
+          <input
+            type="text"
+            onChange={(event) => setZone(event.target.value)}
+          />
+        </li>{" "}
+        <li>
+          <label> Project :</label>
+          <select onChange={(e) => setProjectId(e.target.value)}>
+            <option>Please choose a project </option>
+            {searchProject &&
+              searchProject.map((project) => (
+                <option key={project.id} value={project.id}>
+                  {project.projectName} {""}
+                  {project.projectDate}
+                </option>
+              ))}{" "}
+          </select>
+        </li>
+        <button type="submit" >
           Post Shift
         </button>
       </form>

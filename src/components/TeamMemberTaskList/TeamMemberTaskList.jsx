@@ -91,8 +91,8 @@ const TeamMemberTaskList = () => {
                                   {" "}
                                   <p>
                                     {" "}
-                                    {tasks.goal} {tasks.goalAssignedTo}{" "}
-                                    {tasks.id}{" "}
+                                    Goal :{tasks.goal} <br /> Assigned to: {tasks.goalAssignedTo}{" "}
+                                 
                                   </p>
                                   <button
                                     onClick={() => completeTask(tasks.id)}

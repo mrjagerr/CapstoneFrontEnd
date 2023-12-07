@@ -1,0 +1,13 @@
+.postShift{
+    border-color: black;
+    border: 3px solid;
+    max-width: 30rem;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+   
+}

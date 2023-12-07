@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import './AssignmentViewPage.css'
 
 const AssignmentViewPage = () => {
   const [todaysShifts, setTodaysShifts] = useState([]);
@@ -51,7 +52,7 @@ const AssignmentViewPage = () => {
   };
 
   return (
-    <div>
+    <div className="containerView">
       {" "}
       {console.log(user)}
       <h1>Home Page for {user.userName}!</h1>
@@ -69,7 +70,7 @@ const AssignmentViewPage = () => {
         </button>
         <input type="hidden"></input>
       </form>
-      <div>
+      <div className="shifts">
         {myshifts &&
           myshifts.map((myShifts) => (
             <div key={myShifts.id}>

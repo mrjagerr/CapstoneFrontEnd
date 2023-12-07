@@ -1,12 +1,15 @@
 .editpage{
     border-color: black;
     border: 3px solid;
+    background-color: white;
+    height: fit-content;
+    width: 90rem;
+    
+   
+
   
 }
-.editbox{
-    border-color: black;
-    border: 3px solid;
-}
+
 .editCard{
     border-color: black;
     border: 3px solid;
@@ -20,13 +23,73 @@
     box-shadow: 3rem;
     color: rgb(0, 0, 0);
     text-align: center;
-    background-color:lightblue;
+    background-color:rgb(117, 236, 252);
     height: fit-content;
+   
     
 }
 .displayPage{
-    border-color: black;
-    border: 3px solid;
+    
     flex-direction: row;
     display: flex;
 }
+.projectPostCard{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+
+}
+.todaysProject{
+    display: flex;
+    max-width: 50rem;
+    align-items: center;
+    flex-direction: column;
+}
+.displayCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-items: center;
+
+}
+.todaysShift{
+    display: flex;
+    max-width: 50rem;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+   
+
+
+}
+button{
+display: flex;
+justify-self: center;
+justify-content: space-around;
+margin:2rem;
+
+}
+.hr{
+    
+    color: black;
+    width: 60%;
+    height: 6px;
+    background-color: black;
+    
+}
+.todaysShiftLabel{
+    margin-top: 2rem;
+}
+.pagePosition{
+   
+    flex-direction: column;
+    
+    margin-left: 15rem;
+ 
+    
+}
+

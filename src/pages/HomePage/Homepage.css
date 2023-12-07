@@ -1,9 +1,35 @@
 .progressBar{
-    width: 20rem;
+    width: 10rem;
     height: 20rem;
     margin: 5rem;
 }
 .progress{
     display:flex;
     flex-direction: column;
+}
+.graphSize{
+    width: 10rem;
+    height: 20rem;
+}
+.container{
+    background-color: white;
+    width: fit-content;
+}
+.pageView{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.updateFields{
+    justify-content: space-around;
+    margin-right: 1rem;
+}
+.updateFields1{
+    justify-content: space-around;
+    margin-right: 1rem;
+    ;
+}
+.updateFields2{
+    justify-content: space-around;
+    margin-left: 1rem;
 }

@@ -1,0 +1,20 @@
+.containerView{
+    display: flex;
+    margin: 0 auto;
+   align-self: center;
+    overflow: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    max-width: fit-content;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.shifts{
+    display: flex;
+    border: 2px solid;
+    border-color: black;
+    margin: 2rem;
+}

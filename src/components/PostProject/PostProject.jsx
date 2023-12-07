@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import './PostProject.css'
 
 const PostShift = () => {
   const [projectName, setProjectName] = useState("");
@@ -43,49 +44,55 @@ const PostShift = () => {
   }
 
   return (
-    <div>
+    <div className="postProject" >
       <form onSubmit={handleSubmit}>
-        <label> Project Name :</label>
+       <li> <label> Project Name :</label>
+        
         <input
           Droppable="true"
           type="text"
           value={projectName}
           onChange={(event) => setProjectName(event.target.value)}
           id="projectName"
-        />
-        <label> Project Date :</label>
+        /></li>
+        <li><label> Project Date :</label>
         <input
           Droppable="true"
           type="date"
           value={projectDate}
           onChange={(event) => setProjectDate(event.target.value)}
           id="projectName"
-        />
-        <label> WorkLoad Allocation :</label>
+        /></li>
+       <li> <label> WorkLoad Allocation :</label>
         <input
           Droppable="true"
           type="number"
+          max= "100"
           value={workloadAllocation}
           onChange={(event) => setWorkloadAllocation(event.target.value)}
           id="workloadallocation"
-        />
-        <label> Total Workload Required :</label>
+        /></li>
+       <li> <label> Total Workload Required :</label>
         <input
           Droppable="true"
-          type="text"
+          type="number"
+          min="300"
           value={totalWorkloadRequired}
           onChange={(event) => setTotalWorkloadRequired(event.target.value)}
           id="projectName"
-        />
-        <label> Workload Completed :</label>
+        /></li>
+       <li> <label> Workload Completed :</label>
         <input
           Droppable="true"
-          type="text"
+          type="number"
           value={workloadCompleted}
           onChange={(event) => setProjectName(event.target.value)}
           id="projectName"
-        />
-        <button type="submit" className="buttonDetails">
+        /></li>
+        <li>
+           ( Currently only one project per day can be posted.)
+        </li>
+        <button type="submit" >
           Post Project
         </button>
       </form>

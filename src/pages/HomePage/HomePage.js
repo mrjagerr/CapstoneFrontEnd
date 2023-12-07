@@ -86,13 +86,14 @@ const HomePage = () => {
   const handleUpdate = (event) =>{
     event.preventDefault();
     updateProject()
-fetchProjects();
+    fetchProjects();
   };
  
 
   
   return (
-    <div className="container">
+    <div className="pageView">
+    <div className="container"><h1>Home Page for {user.userName}!</h1>
       <form onSubmit={handleSubmit}>
         <input
           defaultValue="2023-12-01"
@@ -108,7 +109,7 @@ fetchProjects();
         </button>
       </form>
       {console.log(user)}
-      <h1>Home Page for {user.userName}!</h1>
+      
       {projects &&
         projects.map((projects) => (
           <div key={projects.id}>
@@ -128,32 +129,36 @@ fetchProjects();
             </ProgressProvider>
           </div>
         ))}
-      <div>
-        <form onSubmit={handleUpdate}>
+      <div  >
+        <form onSubmit={handleUpdate} >
           {projects &&
             projects.map((projects) => (
-              <div key={projects.id}>
-                <label> Project Being Edited</label>
-               <select onChange={(e) => setProjectId(e.target.value)}>
+              <div className="updateFields" key={projects.id}>
+                <label className="updateFields2"> Project Being Edited :</label>
+               <select className="updateFields1" onChange={(e) => setProjectId(e.target.value)}>
 
                 <option> Please Choose a Project To update</option>
                 <option key ={projects.id} value={projects.id} >
                 {projects.projectName} {""}
                 {projects.projectDate}
                    </option>
-               </select>
-               <input type="text"
+               </select><label>ProjectName : </label> 
+               <input className="updateFields" type="text"
                 value={updateProjectName}
                 onChange={(e) => setUpdateProjectName(e.target.value)}>
                </input>
+               <label>Project Date(yyyy-mm-dd) : </label> 
                <input 
+               className="updateFields"
                type="text"
-               
+               name="example"
                value={updateDate}
                onChange={(e) => setUpdateDate(e.target.value)}>
               
                </input>
+               <label>Add Priority Filled : </label> 
                 <input
+                className="updateFields"
                 type="number"
                 value={workLoadUpdate}
                 onChange={(e) => setWorkLoadUpdate(e.target.value)}>
@@ -166,7 +171,7 @@ fetchProjects();
             ))}
         </form>
       </div>
-
+</div>
       <TeamMemberTaskList />
     </div>
   );

@@ -24,6 +24,8 @@
     width: fit-content;
 justify-content: center;
 justify-self: center;
+margin-top: 2rem;
+background-color: white;
   
 }
 .totalList{

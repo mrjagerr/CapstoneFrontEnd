@@ -16,6 +16,7 @@ const Navbar = () => {
             <b>ProjectManagment App</b>
           </Link>
         </li>
+        <h2> {user?.firstName} </h2>
 
         <li>
           {user ? (
@@ -26,12 +27,22 @@ const Navbar = () => {
         </li>
       </ul>
       <ul>
+
+      </ul>
+      <ul>
         <li>
+        <Link
+         className="navLinks"
+            to="/"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <b>Home </b>
+          </Link>
           <Link
             className="navLinks"
             to="/AdminEditPage"
             style={{ textDecoration: "none", color: "white" }}
-          >
+          >    
             <b> Manage </b>
           </Link>
 
@@ -48,6 +59,7 @@ const Navbar = () => {
           >
             <b>Performance</b>
           </Link>
+         
         </li>
       </ul>
     </div>
