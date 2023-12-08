@@ -5,8 +5,10 @@ import axios from "axios";
 
 import PostShift from "../../components/PostShift/PostShift";
 import PostProject from "../../components/PostProject/PostProject";
+import UpdateProject from "../../components/UpdateProject/UpdateProject";
 
 import "./AdminEditPage.css";
+
 
 const AdminEditPage = () => {
   const [user, token] = useAuth();
@@ -76,83 +78,84 @@ const AdminEditPage = () => {
   console.log(shifts);
   console.log(todaysShifts);
 
-  return (
-    <div className="pagePosition">
-      <div className="editpage ">
-        <div>
-          <div className="editbox"> </div>
-          <div className="projectPostCard">
-            <PostProject /> <br></br> <PostShift />
-          </div>
-          <div className="displayCard">
-            <div>
-              <form onSubmit={handleSubmit}>
-                <input
-                  defaultValue="2023-12-01"
-                  value={dateSearch}
-                  onChange={(e) => setDateSearch(e.target.value)}
-                  type="date"
-                  id="search"
-                ></input>
-                <br></br>
-                <button type="submit"> Search Shift </button>
-              </form>
-            </div>{" "}
-            <h1>Todays Project</h1>
-            <div className="todaysProject">
-              {currentDaysProject &&
-                currentDaysProject.map((todaysProjects) => (
-                  <div className="editCard">
-                    <div className="editbox" key={todaysProjects.id}>
-                      <p>{todaysProjects.projectName}</p>
-                      <p> {todaysProjects.projectDate}</p>
-                      <p> {todaysProjects.workLoadAllocation}</p>
-                      <p> {todaysProjects.totalWorkloadRequired}</p>
-                    </div>
-                  </div>
-                ))}
-            </div>
-            <hr className="hr"></hr>
-            <h2 className="todaysShiftLabel">Todays Shifts</h2>
-            <div className="todaysShift">
-              {todaysShifts &&
-                todaysShifts.map((todaysShifts) => (
-                  <div className="editCard">
-                    <div key={todaysShifts.id}>
-                      <p>
-                        {" "}
-                        <label> Tm : </label> {todaysShifts.teamMemberFirstName}{" "}
-                      </p>
-                      <p>
-                        {" "}
-                        <label> Shift: </label> {todaysShifts.shiftDuration} hrs
-                      </p>
-                      <p>
-                        {" "}
-                        <label> Oos : </label> {todaysShifts.outOfStock} OOS
-                      </p>
-                      <p>
-                        {" "}
-                        <label> PF: </label> {todaysShifts.priorityFill} Pf
-                      </p>
-                      <p>
-                        {" "}
-                        <label> Zone: </label> {todaysShifts.zone}{" "}
-                      </p>
-                      <p>
-                        {" "}
-                        <label> WorkLoad Value : </label>{" "}
-                        {todaysShifts.workLoadValue}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-          <div></div>
+  return (<div className="pagePosition">
+    <div className="editpage ">
+      <div>
+        <div className="editbox"> </div>
+        <div className="projectPostCard">
+          <PostProject /> <br></br> <PostShift /> <br></br> <UpdateProject/>
         </div>
+        <div className="displayCard">
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                defaultValue="2023-12-01"
+                value={dateSearch}
+                onChange={(e) => setDateSearch(e.target.value)}
+                type="date"
+                id="search"
+              ></input><br></br>
+              <button type="submit" >
+                {" "}
+                Search Shift{" "}
+              </button>
+            </form>
+          </div> <h1>Todays Project</h1>
+          <div className="todaysProject">
+            
+            {currentDaysProject &&
+              currentDaysProject.map((todaysProjects) => (
+                <div className="editCard">
+                  <div className="editbox" key={todaysProjects.id}>
+                    <p>{todaysProjects.projectName}</p>
+                    <p> {todaysProjects.projectDate}</p>
+                    <p> {todaysProjects.workLoadAllocation}</p>
+                    <p> {todaysProjects.totalWorkloadRequired}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <hr className="hr"></hr>
+          <h2 className="todaysShift">Todays Shifts</h2>
+          <div className="todaysShift">
+            
+            {todaysShifts &&
+              todaysShifts.map((todaysShifts) => (
+                <div className="editCard">
+                  <div key={todaysShifts.id}>
+                    <p>
+                      {" "}
+                      <label> Tm : </label> {todaysShifts.teamMemberFirstName}{" "}
+                    </p>
+                    <p>
+                      {" "}
+                      <label> Shift: </label> {todaysShifts.shiftDuration} hrs
+                    </p>
+                    <p>
+                      {" "}
+                      <label> Oos : </label> {todaysShifts.outOfStock} OOS
+                    </p>
+                    <p>
+                      {" "}
+                      <label> PF: </label> {todaysShifts.priorityFill} Pf
+                    </p>
+                    <p>
+                      {" "}
+                      <label> Zone: </label> {todaysShifts.zone}{" "}
+                    </p>
+                    <p>
+                      {" "}
+                      <label> WorkLoad Value : </label>{" "}
+                      {todaysShifts.workLoadValue}
+                    </p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+        <div></div>
       </div>
-    </div>
+    </div></div>
   );
 };
 

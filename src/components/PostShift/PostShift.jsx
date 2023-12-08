@@ -63,7 +63,7 @@ const PostShift = (props) => {
   }
 
   return (
-    <div className="postShift">
+    <div className="postShift"><h2> Post Shift </h2>
       <div></div>
 
       <form onSubmit={handleSubmit}>
@@ -139,7 +139,7 @@ const PostShift = (props) => {
           </select>
         </li>
         <button type="submit" >
-          Post Shift
+          Post 
         </button>
       </form>
     </div>

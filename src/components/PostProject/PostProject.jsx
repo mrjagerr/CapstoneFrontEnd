@@ -45,11 +45,12 @@ const PostShift = () => {
 
   return (
     <div className="postProject" >
+        <h2> Post Project</h2>
       <form onSubmit={handleSubmit}>
        <li> <label> Project Name :</label>
         
         <input
-          Droppable="true"
+         
           type="text"
           value={projectName}
           onChange={(event) => setProjectName(event.target.value)}
@@ -57,7 +58,7 @@ const PostShift = () => {
         /></li>
         <li><label> Project Date :</label>
         <input
-          Droppable="true"
+         
           type="date"
           value={projectDate}
           onChange={(event) => setProjectDate(event.target.value)}
@@ -65,7 +66,7 @@ const PostShift = () => {
         /></li>
        <li> <label> WorkLoad Allocation :</label>
         <input
-          Droppable="true"
+          
           type="number"
           max= "100"
           value={workloadAllocation}
@@ -74,7 +75,7 @@ const PostShift = () => {
         /></li>
        <li> <label> Total Workload Required :</label>
         <input
-          Droppable="true"
+         
           type="number"
           min="300"
           value={totalWorkloadRequired}
@@ -83,7 +84,7 @@ const PostShift = () => {
         /></li>
        <li> <label> Workload Completed :</label>
         <input
-          Droppable="true"
+          
           type="number"
           value={workloadCompleted}
           onChange={(event) => setProjectName(event.target.value)}
@@ -93,7 +94,7 @@ const PostShift = () => {
            ( Currently only one project per day can be posted.)
         </li>
         <button type="submit" >
-          Post Project
+          Post 
         </button>
       </form>
     </div>
