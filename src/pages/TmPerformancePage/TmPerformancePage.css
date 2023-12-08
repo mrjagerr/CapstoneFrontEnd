@@ -1,0 +1,25 @@
+.containerView{
+    display: flex;
+    margin: 0 auto;
+   align-self: center;
+    overflow: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    max-width: fit-content;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.graphView{
+    max-width: 50rem;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+.pageLayoutPP{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}

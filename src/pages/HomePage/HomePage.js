@@ -25,6 +25,7 @@ const HomePage = () => {
     fetchProjects();
     fetchShifts();
     updateProject();
+    fetchProjects();
     
   }, [token]);
 
@@ -85,6 +86,7 @@ const HomePage = () => {
   };
   const handleUpdate = (event) =>{
     event.preventDefault();
+    fetchProjects();
     updateProject()
     fetchProjects();
   };

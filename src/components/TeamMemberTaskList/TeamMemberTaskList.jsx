@@ -12,7 +12,7 @@ const TeamMemberTaskList = () => {
   const [tasks, setTasks] = useState();
 
   useEffect(() => {
-    fetchTasks();
+    
   }, [token]);
 
   const fetchTasks = async () => {
@@ -63,7 +63,7 @@ const TeamMemberTaskList = () => {
   return (
     <div className="List">
       <div className="progress"></div>
-      <PostToList onClick={fetchTasks} />
+      <PostToList onNewTask={fetchTasks} />
       <button onClick={fetchTasks}> Get Current Tasks </button>
       <div className="postBox">
         <div className="Container">

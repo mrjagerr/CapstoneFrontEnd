@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const PostToList = ({ onClick }) => {
+const PostToList = ({ onSubmit }) => {
   const [goal, setGoal] = useState("");
   const [goalAssignedTo, setGoalAssignedTo] = useState();
   const [user, token] = useAuth();
@@ -35,7 +35,7 @@ const PostToList = ({ onClick }) => {
       console.log(newshift);
     }
     addTask(newshift);
-    onClick();
+    
   }
 
   return (

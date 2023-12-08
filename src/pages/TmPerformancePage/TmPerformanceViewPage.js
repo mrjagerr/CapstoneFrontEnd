@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { Chart } from "react-google-charts";
+import './TmPerformancePage.css'
 
 
 
@@ -15,12 +16,11 @@ const TmPerformanceViewPage = () => {
 
 const [myshifts, setMyShifts] = useState();
 const [user, token] = useAuth();
-const [priorityFill,setPriorityFill] = useState()
 
-
+const [chartData,setChartData] = useState ([Number]);
 useEffect(() => {
     fetchMyShifts();
-
+   
    
   }, [token]);
 
@@ -35,21 +35,32 @@ useEffect(() => {
             }
           );
           setMyShifts(response.data);
+       
+            
           console.log(myshifts)
         } catch (error) {
           console.log(error.response.data);
         }
       };
-   
+
+function getGraphData(event){
+    event.preventDefault();
+    let tempChartData =myshifts.map(data => {
+       
+        return [data.shiftDate,data.priorityFill];
+    });
+    setChartData(tempChartData);
+    {console.log(tempChartData)}
+}
+
+ 
     
-
-      
-      
-
+     
     return (
-    <div>
+    <div className="pageLayoutPP"> <div className="containerView">
          <h1>Performance Page for {user.userName}!</h1>
          <div>
+  
         {myshifts &&
           myshifts.map((myShifts) => (
             <div key={myShifts.id}>
@@ -79,16 +90,27 @@ useEffect(() => {
                 <label> WorkLoad Value : </label> {myShifts.workLoadValue}
               </p>
             </div>
-          ))}
+           
+          ))} 
+          <form onSubmit={getGraphData}>
+                <button type="submit" > Get Performance</button>
+            </form>
       </div>
    <div>
-   {myshifts &&
-          myshifts.map((myShifts)=>{
-
-          })}
+   
    </div>
-  
-
+  </div>
+   <div className="graphView">
+   <Chart
+        chartType="LineChart"
+        data={[["Shift Date", "Priority Fill"],...chartData]}
+        width="100%"
+        height="400px"
+        options={{legend:{position : 'bottom'}}}
+        legendToggle
+      />
+     
+   </div>
  
     </div>);
 }
