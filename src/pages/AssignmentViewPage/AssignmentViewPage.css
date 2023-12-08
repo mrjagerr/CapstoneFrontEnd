@@ -11,10 +11,15 @@
     max-width: fit-content;
     flex-wrap: wrap;
     flex-direction: column;
+    border: 2px solid;
+    border-color: black;
+    box-shadow: 10px 10px;
+
 }
 .shifts{
     display: flex;
     border: 2px solid;
     border-color: black;
     margin: 2rem;
+    box-shadow: 10px 10px;
 }

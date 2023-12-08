@@ -92,4 +92,10 @@ margin:2rem;
  
     
 }
+h2{
+    text-shadow: 0 0 3px #1a00ac, 0 0 5px #025974;
+}
+h1{
+    text-shadow: 0 0 3px #1a00ac, 0 0 5px #025974;
+}
 

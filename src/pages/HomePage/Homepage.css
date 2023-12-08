@@ -14,11 +14,13 @@
 .container{
     background-color: white;
     width: fit-content;
+    box-shadow: 10px 10px;
 }
 .pageView{
     align-items: center;
     display: flex;
     flex-direction: column;
+    
 }
 .updateFields{
     justify-content: space-around;
@@ -27,9 +29,10 @@
 .updateFields1{
     justify-content: space-around;
     margin-right: 1rem;
-    ;
+    margin-left: 1rem;
 }
 .updateFields2{
     justify-content: space-around;
+   
     margin-left: 1rem;
 }

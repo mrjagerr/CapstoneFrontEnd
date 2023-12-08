@@ -93,7 +93,7 @@ function getGraphData(event){
            
           ))} 
           <form onSubmit={getGraphData}>
-                <button type="submit" > Get Performance</button>
+                <button type="submit" > Performance</button>
             </form>
       </div>
    <div>

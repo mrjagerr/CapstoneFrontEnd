@@ -45,7 +45,7 @@ const TeamMemberTaskList = () => {
     const { source, destination, type } = results;
     if (!destination) return;
     if (
-      source.droppableId === destination.droppableId &&
+      
       source.index === destination.index
     )
       return;
