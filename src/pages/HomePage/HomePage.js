@@ -58,7 +58,7 @@ const HomePage = () => {
     }
   }; const updateProject = async () => {
     try {
-      await axios.put(
+      await axios.patch(
         `https://localhost:5001/api/projects/${projectId}`,
         {
           projectName: updateProjectName,
@@ -86,11 +86,16 @@ const HomePage = () => {
   };
   const handleUpdate = (event) =>{
     event.preventDefault();
+
     fetchProjects();
     updateProject()
     fetchProjects();
   };
- 
+ const handleChange = (event) =>{
+  event.preventDefault();
+  setUpdateProjectName( {projectName: event.target.updateProjectName})
+  setUpdateDate({projectDate: event.target.updateDate})
+ }
 
   
   return (
@@ -137,7 +142,9 @@ const HomePage = () => {
             projects.map((projects) => (
               <div className="updateFields" key={projects.id}>
                 <label className="updateFields2"> Project Being Edited :</label>
-               <select className="updateFields1" onChange={(e) => setProjectId(e.target.value)}>
+               <select className="updateFields1" onChange={(e) => setProjectId(e.target.value) }  onLo={() =>setUpdateProjectName(projects.projectName)}>
+                {console.log(updateDate)}
+                {console.log(updateProjectName)}
 
                 <option> Please Choose a Project To update</option>
                 <option key ={projects.id} value={projects.id} >
@@ -146,16 +153,16 @@ const HomePage = () => {
                    </option>
                </select><label>ProjectName : </label> 
                <input className="updateFields" type="text"
-                value={updateProjectName}
-                onChange={(e) => setUpdateProjectName(e.target.value)}>
+                value={projects.projectName}
+                onClick={(e) => setUpdateProjectName(e.target.value)}>
                </input>
                <label>Project Date(yyyy-mm-dd) : </label> 
                <input 
                className="updateFields"
                type="text"
                name="example"
-               value={updateDate}
-               onChange={(e) => setUpdateDate(e.target.value)}>
+               value={projects.projectDate}
+               onClick={() => setUpdateDate(projects.projectDate)}>
               
                </input>
                <label>Add Priority Filled : </label> 

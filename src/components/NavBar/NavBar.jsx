@@ -26,13 +26,11 @@ const Navbar = () => {
           )}
         </li>
       </ul>
-      <ul>
-
-      </ul>
+      <ul></ul>
       <ul>
         <li>
-        <Link
-         className="navLinks"
+          <Link
+            className="navLinks"
             to="/"
             style={{ textDecoration: "none", color: "white" }}
           >
@@ -42,7 +40,7 @@ const Navbar = () => {
             className="navLinks"
             to="/AdminEditPage"
             style={{ textDecoration: "none", color: "white" }}
-          >    
+          >
             <b> Manage </b>
           </Link>
 
@@ -59,7 +57,6 @@ const Navbar = () => {
           >
             <b>Performance</b>
           </Link>
-         
         </li>
       </ul>
     </div>
