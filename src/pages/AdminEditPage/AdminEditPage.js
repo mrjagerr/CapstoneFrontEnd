@@ -20,6 +20,8 @@ const AdminEditPage = () => {
   const [valueEnd, setValueEnd] = useState(
     currentDaysProject.workloadCompleted
   );
+  const [isTeamLead,setIsTeamLead] = useState(false);
+
   useEffect(() => {
     fetchTeamMember();
     fetchCurrentWorkDay();
@@ -73,17 +75,25 @@ const AdminEditPage = () => {
     fetchShifts();
     fetchCurrentWorkDay();
   };
+function handleTeamLead(){
+    if(user.isTeamLead=true)
+    setIsTeamLead(!isTeamLead)
+  }
   console.log(dateSearch);
   console.log(currentDaysProject);
   console.log(shifts);
   console.log(todaysShifts);
+  console.log(user.role)
+ 
 
-  return (<div className="pagePosition">
+  return (<div className="pagePosition" onLoad={handleTeamLead}>
+   
+  
     <div className="editpage ">
       <div>
         <div className="editbox"> </div>
         <div className="projectPostCard">
-          <PostProject /> <br></br> <PostShift /> <br></br> <UpdateProject/>
+          {isTeamLead && <PostProject />} { isTeamLead && <PostShift />} {isTeamLead && <UpdateProject/>}
         </div>
         <div className="displayCard">
           <div>

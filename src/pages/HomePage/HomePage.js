@@ -154,7 +154,7 @@ const HomePage = () => {
                </select><label>ProjectName : </label> 
                <input className="updateFields" type="text"
                 value={projects.projectName}
-                onClick={(e) => setUpdateProjectName(e.target.value)}>
+                onChange={(e) => setUpdateProjectName(e.target.value)}>
                </input>
                <label>Project Date(yyyy-mm-dd) : </label> 
                <input 
@@ -162,7 +162,7 @@ const HomePage = () => {
                type="text"
                name="example"
                value={projects.projectDate}
-               onClick={() => setUpdateDate(projects.projectDate)}>
+               onChange={() => setUpdateDate(projects.projectDate)}>
               
                </input>
                <label>Add Priority Filled : </label> 
