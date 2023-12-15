@@ -17,15 +17,14 @@ const AdminEditPage = () => {
   const [currentDaysProject, setCurrentDaysproject] = useState([]);
   const [todaysShifts, setTodaysShifts] = useState([]);
   const [dateSearch, setDateSearch] = useState();
-  const [valueEnd, setValueEnd] = useState(
-    currentDaysProject.workloadCompleted
-  );
+ 
   const [isTeamLead,setIsTeamLead] = useState(false);
 
   useEffect(() => {
     fetchTeamMember();
     fetchCurrentWorkDay();
     fetchShifts();
+    handleTeamLead();
   }, [token]);
 
   const fetchTeamMember = async () => {
@@ -76,14 +75,14 @@ const AdminEditPage = () => {
     fetchCurrentWorkDay();
   };
 function handleTeamLead(){
-    if(user.isTeamLead=true)
+    if(user.isTeamLead == "True")
     setIsTeamLead(!isTeamLead)
   }
   console.log(dateSearch);
   console.log(currentDaysProject);
   console.log(shifts);
   console.log(todaysShifts);
-  console.log(user.role)
+  console.log(user)
  
 
   return (<div className="pagePosition" onLoad={handleTeamLead}>

@@ -16,7 +16,8 @@ function setUserObject(user) {
     id: user.id,
     email: user.email,
     firstName: user.firstName,
-    lastName : user.lastName
+    lastName : user.lastName,
+    isTeamLead: user.isTeamLead
   };
 }
 
