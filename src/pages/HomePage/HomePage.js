@@ -27,6 +27,8 @@ const HomePage = () => {
     updateProject();
     fetchProjects();
     
+
+    
   }, [token]);
 
  
@@ -61,8 +63,7 @@ const HomePage = () => {
       await axios.patch(
         `https://localhost:5001/api/projects/${projectId}`,
         {
-          projectName: updateProjectName,
-          projectDate: updateDate,
+         
           workloadCompleted: workLoadUpdate,
         },
         {
@@ -91,11 +92,7 @@ const HomePage = () => {
     updateProject()
     fetchProjects();
   };
- const handleChange = (event) =>{
-  event.preventDefault();
-  setUpdateProjectName( {projectName: event.target.updateProjectName})
-  setUpdateDate({projectDate: event.target.updateDate})
- }
+ 
 
   
   return (
@@ -137,12 +134,12 @@ const HomePage = () => {
           </div>
         ))}
       <div  >
-        <form onSubmit={handleUpdate} >
+        <form onSubmit={handleUpdate}  >
           {projects &&
             projects.map((projects) => (
               <div className="updateFields" key={projects.id}>
                 <label className="updateFields2"> Project Being Edited :</label>
-               <select className="updateFields1" onChange={(e) => setProjectId(e.target.value) }  onLo={() =>setUpdateProjectName(projects.projectName)}>
+               <select className="updateFields1" onChange={(e) => setProjectId(e.target.value) }  onSelectCapture={(e) =>setUpdateProjectName(projects.projectName)}>
                 {console.log(updateDate)}
                 {console.log(updateProjectName)}
 
@@ -150,22 +147,10 @@ const HomePage = () => {
                 <option key ={projects.id} value={projects.id} >
                 {projects.projectName} {""}
                 {projects.projectDate}
+
+
                    </option>
-               </select><label>ProjectName : </label> 
-               <input className="updateFields" type="text"
-                value={projects.projectName}
-                onChange={(e) => setUpdateProjectName(e.target.value)}>
-               </input>
-               <label>Project Date(yyyy-mm-dd) : </label> 
-               <input 
-               className="updateFields"
-               type="text"
-               name="example"
-               value={projects.projectDate}
-               onChange={() => setUpdateDate(projects.projectDate)}>
-              
-               </input>
-               <label>Add Priority Filled : </label> 
+               </select>
                 <input
                 className="updateFields"
                 type="number"
