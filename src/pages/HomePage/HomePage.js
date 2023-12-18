@@ -24,7 +24,7 @@ const HomePage = () => {
   useEffect(() => {
     fetchProjects();
     fetchShifts();
-    updateProject();
+   
     fetchProjects();
     
 
@@ -70,7 +70,7 @@ const HomePage = () => {
           headers: {
             Authorization: "Bearer " + token,
           },
-        }
+        },fetchProjects()
       );
     
       
