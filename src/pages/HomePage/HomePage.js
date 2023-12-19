@@ -8,6 +8,7 @@ import "react-circular-progressbar/dist/styles.css";
 import "./Homepage.css";
 import { easeQuadInOut } from "d3-ease";
 import ProgressProvider from "../../hooks/ProgressProvider";
+import { Button } from "@mui/material";
 
 const HomePage = () => {
   // The "user" value from this Hook contains user information (id, userName, email) from the decoded token
@@ -99,7 +100,8 @@ const HomePage = () => {
     <div className="pageView">
     <div className="container"><h1>Home Page for {user.userName}!</h1>
       <form onSubmit={handleSubmit}>
-        <input
+        <input 
+        className="input"
           defaultValue="2023-12-01"
           value={dateSearch}
           onChange={(e) => setDateSearch(e.target.value) && setUpdateDate(e.target.value) && setUpdateProjectName(projects.projectName)}
@@ -107,10 +109,10 @@ const HomePage = () => {
           type="date"
           id="search"
         ></input>
-        <button type="submit" className="searchButton">
+        <Button variant="contained" size="small" type="submit" className="buttonSizing">
           {" "}
           Search Shift{" "}
-        </button>
+        </Button>
       </form>
       {console.log(user)}
       
@@ -133,7 +135,7 @@ const HomePage = () => {
             </ProgressProvider>
           </div>
         ))}
-      <div  >
+      <div className="buttonSizing" >
         <form onSubmit={handleUpdate}  >
           {projects &&
             projects.map((projects) => (
@@ -157,10 +159,10 @@ const HomePage = () => {
                 value={workLoadUpdate}
                 onChange={(e) => setWorkLoadUpdate(e.target.value)}>
                 </input>
-                <button type="submit" className="searchButton">
+                <Button type="submit" variant="contained" >
                   {" "}
                   Update WorkLoad{" "}
-                </button>
+                </Button>
               </div>
             ))}
         </form>

@@ -15,6 +15,7 @@
     background-color: white;
     width: fit-content;
     box-shadow: 10px 10px;
+    
 }
 .pageView{
     align-items: center;
@@ -35,4 +36,11 @@
     justify-content: space-around;
    
     margin-left: 1rem;
+}
+.input{
+    
+    margin: 1vh;
+}
+.buttonSizing{
+    margin: 1vh;
 }
