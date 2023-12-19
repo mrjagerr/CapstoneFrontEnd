@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import { Button } from "@mui/material";
 
 const PostToList = ({ onNewTask }) => {
   const [goal, setGoal] = useState("");
@@ -24,6 +25,7 @@ const PostToList = ({ onNewTask }) => {
       }
     );
   }
+  
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -40,7 +42,7 @@ const PostToList = ({ onNewTask }) => {
   }
 
   return (
-    <div>
+    <div className="buttonSizing">
       <form onSubmit={handleSubmit}>
         <label> Task :</label>
         <input
@@ -52,14 +54,15 @@ const PostToList = ({ onNewTask }) => {
         />
         <label> Assigned To :</label>
         <input
+        className="input"
           type="text"
           value={goalAssignedTo}
           onChange={(event) => setGoalAssignedTo(event.target.value)}
           id="ShiftDuration"
         />
-        <button type="submit" className="buttonDetails">
+        <Button type="submit"  variant="contained">
           Post Task
-        </button>
+        </Button>
       </form>
     </div>
   );

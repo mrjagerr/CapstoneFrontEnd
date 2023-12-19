@@ -5,6 +5,7 @@ import axios from "axios";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./TeamMemberTaskList.css";
 import PostToList from "../PostToList/PostToList";
+import { Button } from "@mui/material";
 
 const TeamMemberTaskList = () => {
   const [user, token] = useAuth();
@@ -12,6 +13,7 @@ const TeamMemberTaskList = () => {
   const [tasks, setTasks] = useState();
 
   useEffect(() => {
+    fetchTasks();
     
   }, [token]);
 
@@ -63,8 +65,8 @@ const TeamMemberTaskList = () => {
   return (
     <div className="List">
       <div className="progress"></div>
-      <PostToList onNewTask={fetchTasks} />
-      <button onClick={fetchTasks}> Get Current Tasks </button>
+      <PostToList onNewTask={fetchTasks}onSubmit ={fetchTasks} />
+      <Button onClick={fetchTasks} variant="contained"> Get Current Tasks </Button>
       <div className="postBox">
         <div className="Container">
           <div className="cardTitle">
@@ -94,12 +96,13 @@ const TeamMemberTaskList = () => {
                                     Goal :{tasks.goal} <br /> Assigned to: {tasks.goalAssignedTo}{" "}
                                  
                                   </p>
-                                  <button
+                                  <Button 
+                                  variant="outlined"
                                     onClick={() => completeTask(tasks.id)}
                                   >
                                     {" "}
                                     Complete{" "}
-                                  </button>
+                                  </Button>
                                 </div>
                               </div>
                             </div>
