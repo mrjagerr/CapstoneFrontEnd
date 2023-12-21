@@ -159,7 +159,7 @@ const HomePage = () => {
                 value={workLoadUpdate}
                 onChange={(e) => setWorkLoadUpdate(e.target.value)}>
                 </input>
-                <Button type="submit" variant="contained" >
+                <Button type="submit" variant="contained" color="secondary">
                   {" "}
                   Update WorkLoad{" "}
                 </Button>
